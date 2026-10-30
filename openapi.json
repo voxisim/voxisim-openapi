@@ -1,0 +1,3163 @@
+{
+  "components": {
+    "responses": {},
+    "schemas": {
+      "RentalCancelResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalCancelResponse",
+        "type": "object"
+      },
+      "ActivationStatusResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "codes": {
+                "items": {
+                  "$ref": "#/components/schemas/ActivationCode"
+                },
+                "type": "array"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "codes",
+              "done"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "ActivationStatusResponse",
+        "type": "object"
+      },
+      "ActivationServicesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "category": {
+                  "nullable": true,
+                  "type": "string"
+                },
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "icon_url": {
+                  "format": "uri",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "min_price": {
+                  "additionalProperties": false,
+                  "nullable": true,
+                  "properties": {
+                    "country": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "price_usd": {
+                      "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "price_usd",
+                    "country"
+                  ],
+                  "type": "object"
+                },
+                "popular": {
+                  "nullable": true,
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "icon_url",
+                "popular",
+                "title",
+                "category",
+                "count",
+                "min_price"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "ActivationServicesResponse",
+        "type": "object"
+      },
+      "RentalExtendResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "rent": {
+                "$ref": "#/components/schemas/Rental"
+              }
+            },
+            "required": [
+              "rent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalExtendResponse",
+        "type": "object"
+      },
+      "Rental": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "codes": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "body": {
+                  "type": "string"
+                },
+                "from": {
+                  "nullable": true,
+                  "type": "string"
+                },
+                "id": {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "inserted_at": {
+                  "format": "date-time",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "from",
+                "body",
+                "inserted_at"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountrySummary"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "inserted_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "number": {
+            "pattern": "^\\+?[0-9]+$",
+            "type": "string"
+          },
+          "price_usd": {
+            "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+            "type": "string"
+          },
+          "refundable": {
+            "type": "boolean"
+          },
+          "rented_until": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "service": {
+            "additionalProperties": true,
+            "description": "Provider-owned service metadata; known fields may be extended without notice.",
+            "properties": {
+              "category": {
+                "nullable": true,
+                "type": "string"
+              },
+              "icon_url": {
+                "format": "uri",
+                "nullable": true,
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "active",
+          "refundable",
+          "price_usd",
+          "service",
+          "country",
+          "inserted_at",
+          "rented_until",
+          "codes"
+        ],
+        "title": "Rental",
+        "type": "object"
+      },
+      "TopupRequest": {
+        "additionalProperties": false,
+        "example": {
+          "amount_usd": "5.00"
+        },
+        "properties": {
+          "amount_usd": {
+            "description": "USD amount of balance to buy.",
+            "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount_usd"
+        ],
+        "title": "TopupRequest",
+        "type": "object"
+      },
+      "RentalPurchaseRequest": {
+        "additionalProperties": false,
+        "example": {
+          "country_id": 187,
+          "hours": 4,
+          "service_id": "tg"
+        },
+        "properties": {
+          "country_id": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "hours": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "service_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_id",
+          "country_id",
+          "hours"
+        ],
+        "title": "RentalPurchaseRequest",
+        "type": "object"
+      },
+      "SignupRequest": {
+        "additionalProperties": false,
+        "example": {
+          "label": "production-agent"
+        },
+        "properties": {
+          "label": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "title": "SignupRequest",
+        "type": "object"
+      },
+      "RentalIntervalsResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "count_all": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "intervals": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "count": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "hours": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "price_usd": {
+                      "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hours",
+                    "count",
+                    "price_usd"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "count_all",
+              "intervals"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalIntervalsResponse",
+        "type": "object"
+      },
+      "ActivationPurchaseResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "info": {
+                "additionalProperties": false,
+                "properties": {
+                  "price_usd": {
+                    "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "price_usd"
+                ],
+                "type": "object"
+              },
+              "number": {
+                "type": "string"
+              },
+              "number_h": {
+                "pattern": "^\\+?[0-9]+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "number",
+              "number_h",
+              "info"
+            ],
+            "type": "object"
+          },
+          "receipt_token": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "ActivationPurchaseResponse",
+        "type": "object"
+      },
+      "RentalCodesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "codes": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "body": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "inserted_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "from",
+                    "body",
+                    "inserted_at"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "cursor": {
+                "format": "uuid",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "codes",
+              "cursor"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalCodesResponse",
+        "type": "object"
+      },
+      "RentalExtendOptionsResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "max_hours": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "options": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "hours": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "price_usd": {
+                      "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hours",
+                    "price_usd"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "max_hours",
+              "options"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalExtendOptionsResponse",
+        "type": "object"
+      },
+      "ActivationCountriesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "activation_chance": {
+                  "additionalProperties": false,
+                  "nullable": true,
+                  "properties": {
+                    "success_pct": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "success_pct"
+                  ],
+                  "type": "object"
+                },
+                "country_id": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "flag_url": {
+                  "format": "uri",
+                  "type": "string"
+                },
+                "iso": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "numbers_available": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "popular": {
+                  "nullable": true,
+                  "type": "boolean"
+                },
+                "price_usd": {
+                  "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "country_id",
+                "popular",
+                "iso",
+                "flag_url",
+                "numbers_available",
+                "name",
+                "price_usd",
+                "activation_chance"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "ActivationCountriesResponse",
+        "type": "object"
+      },
+      "CountrySummary": {
+        "additionalProperties": false,
+        "properties": {
+          "country_id": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "flag_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "iso": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "country_id",
+          "iso",
+          "flag_url",
+          "name"
+        ],
+        "title": "CountrySummary",
+        "type": "object"
+      },
+      "RentalCountriesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "countries": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "count_4": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "count_all": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "country_id": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "flag_url": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "iso": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "popular": {
+                      "type": "boolean"
+                    },
+                    "price_usd": {
+                      "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "country_id",
+                    "iso",
+                    "popular",
+                    "flag_url",
+                    "name",
+                    "count_4",
+                    "count_all",
+                    "price_usd"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "countries"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalCountriesResponse",
+        "type": "object"
+      },
+      "VoucherClaimResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "amount_usd": {
+                "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "balance_usd": {
+                "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "claimed": {
+                "type": "boolean"
+              },
+              "currency": {
+                "enum": [
+                  "USD"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "claimed",
+              "amount_usd",
+              "balance_usd",
+              "currency"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "VoucherClaimResponse",
+        "type": "object"
+      },
+      "LoginLinkResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "expires_at": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "login_url": {
+                "description": "Single-use URL that signs a browser into the dashboard.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "login_url",
+              "expires_at"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "LoginLinkResponse",
+        "type": "object"
+      },
+      "ActivationCode": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "inserted_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "text",
+          "inserted_at"
+        ],
+        "title": "ActivationCode",
+        "type": "object"
+      },
+      "RentalExtendRequest": {
+        "additionalProperties": false,
+        "example": {
+          "hours": 4
+        },
+        "properties": {
+          "hours": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hours"
+        ],
+        "title": "RentalExtendRequest",
+        "type": "object"
+      },
+      "RentalPurchaseResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "info": {
+                "additionalProperties": false,
+                "properties": {
+                  "price_usd": {
+                    "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "price_usd"
+                ],
+                "type": "object"
+              },
+              "number": {
+                "pattern": "^\\+?[0-9]+$",
+                "type": "string"
+              },
+              "number_h": {
+                "pattern": "^\\+?[0-9]+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "number",
+              "number_h",
+              "info"
+            ],
+            "type": "object"
+          },
+          "receipt_token": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalPurchaseResponse",
+        "type": "object"
+      },
+      "RentalServicesResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "services": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "category": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "count_all_total": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "icon_url": {
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "min_price": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "count_4": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "count_all": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "country": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "flag_url": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "id": {
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "iso": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "iso",
+                            "name",
+                            "flag_url"
+                          ],
+                          "type": "object"
+                        },
+                        "price_usd": {
+                          "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "price_usd",
+                        "country",
+                        "count_4",
+                        "count_all"
+                      ],
+                      "type": "object"
+                    },
+                    "popular": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "icon_url",
+                    "title",
+                    "category",
+                    "min_price",
+                    "popular",
+                    "count_all_total"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "services"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalServicesResponse",
+        "type": "object"
+      },
+      "VoucherClaimRequest": {
+        "additionalProperties": false,
+        "example": {
+          "code": "VXS-PROMO-CODE"
+        },
+        "properties": {
+          "code": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "title": "VoucherClaimRequest",
+        "type": "object"
+      },
+      "Activation": {
+        "additionalProperties": false,
+        "properties": {
+          "codes": {
+            "items": {
+              "$ref": "#/components/schemas/ActivationCode"
+            },
+            "type": "array"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountrySummary"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "inserted_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "number_h": {
+            "pattern": "^\\+?[0-9]+$",
+            "type": "string"
+          },
+          "pending": {
+            "type": "boolean"
+          },
+          "refunded": {
+            "type": "boolean"
+          },
+          "service": {
+            "additionalProperties": true,
+            "description": "Provider-owned service metadata; known fields may be extended without notice.",
+            "properties": {
+              "category": {
+                "nullable": true,
+                "type": "string"
+              },
+              "icon_url": {
+                "format": "uri",
+                "nullable": true,
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "service_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "number_h",
+          "inserted_at",
+          "service_id",
+          "service",
+          "country",
+          "codes",
+          "refunded",
+          "pending",
+          "status"
+        ],
+        "title": "Activation",
+        "type": "object"
+      },
+      "PaymentRequiredResponse": {
+        "description": "An account balance error or an x402 payment challenge.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ErrorResponse"
+          },
+          {
+            "$ref": "#/components/schemas/X402Challenge"
+          }
+        ],
+        "title": "PaymentRequiredResponse"
+      },
+      "X402Challenge": {
+        "additionalProperties": false,
+        "properties": {
+          "accepts": {
+            "items": {
+              "$ref": "#/components/schemas/X402Requirement"
+            },
+            "type": "array"
+          },
+          "error": {
+            "enum": [
+              "payment_required"
+            ],
+            "type": "string"
+          },
+          "error_info": {
+            "$ref": "#/components/schemas/ApiError"
+          },
+          "x402Version": {
+            "enum": [
+              1
+            ],
+            "type": "integer"
+          }
+        },
+        "required": [
+          "x402Version",
+          "accepts",
+          "error",
+          "error_info"
+        ],
+        "title": "X402Challenge",
+        "type": "object"
+      },
+      "ApiError": {
+        "additionalProperties": false,
+        "example": {
+          "message": "Invalid country_id",
+          "retry": "fix_request",
+          "status": 400,
+          "type": "invalid_argument"
+        },
+        "properties": {
+          "details": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "message": {
+            "maxLength": 201,
+            "type": "string"
+          },
+          "retry": {
+            "enum": [
+              "fix_request",
+              "never",
+              "retry",
+              "retry_later"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "maximum": 599,
+            "minimum": 400,
+            "type": "integer"
+          },
+          "type": {
+            "enum": [
+              "conflict",
+              "insufficient_balance",
+              "internal_error",
+              "invalid_argument",
+              "not_found",
+              "out_of_stock",
+              "payment_failed",
+              "payment_invalid",
+              "payment_required",
+              "provider_error",
+              "provider_unavailable",
+              "rate_limited",
+              "unauthorized",
+              "unknown_tool",
+              "voucher_invalid"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "message",
+          "status",
+          "retry"
+        ],
+        "title": "ApiError",
+        "type": "object"
+      },
+      "RentalListResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "cursor": {
+                "format": "uuid",
+                "nullable": true,
+                "type": "string"
+              },
+              "rents": {
+                "items": {
+                  "$ref": "#/components/schemas/Rental"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "rents",
+              "cursor"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "RentalListResponse",
+        "type": "object"
+      },
+      "TopupResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "balance_usd": {
+                "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "credited_usd": {
+                "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "currency": {
+                "enum": [
+                  "USD"
+                ],
+                "type": "string"
+              },
+              "network": {
+                "nullable": true,
+                "type": "string"
+              },
+              "tx_hash": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "credited_usd",
+              "balance_usd",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "receipt_token": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "TopupResponse",
+        "type": "object"
+      },
+      "ActivationPurchaseRequest": {
+        "additionalProperties": false,
+        "example": {
+          "country_id": 187,
+          "service_id": "tg"
+        },
+        "properties": {
+          "country_id": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "service_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_id",
+          "country_id"
+        ],
+        "title": "ActivationPurchaseRequest",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "additionalProperties": false,
+        "example": {
+          "error": {
+            "message": "Unauthorized",
+            "retry": "fix_request",
+            "status": 401,
+            "type": "unauthorized"
+          }
+        },
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ApiError"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "SignupResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "account_id": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "api_base": {
+                "enum": [
+                  "/v1"
+                ],
+                "type": "string"
+              },
+              "api_key": {
+                "pattern": "^vxs_",
+                "type": "string"
+              },
+              "balance_usd": {
+                "pattern": "^[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "account_id",
+              "api_key",
+              "balance_usd",
+              "status",
+              "api_base"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "SignupResponse",
+        "type": "object"
+      },
+      "X402Requirement": {
+        "additionalProperties": false,
+        "properties": {
+          "asset": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "extra": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "maxAmountRequired": {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          },
+          "maxTimeoutSeconds": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "mimeType": {
+            "enum": [
+              "application/json"
+            ],
+            "type": "string"
+          },
+          "network": {
+            "type": "string"
+          },
+          "payTo": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "scheme": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scheme",
+          "network",
+          "maxAmountRequired",
+          "resource",
+          "description",
+          "mimeType",
+          "payTo",
+          "maxTimeoutSeconds",
+          "asset",
+          "extra"
+        ],
+        "title": "X402Requirement",
+        "type": "object"
+      },
+      "BalanceResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "account_id": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "balance_usd": {
+                "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                "type": "string"
+              },
+              "currency": {
+                "enum": [
+                  "USD"
+                ],
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "account_id",
+              "balance_usd",
+              "currency",
+              "status"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "BalanceResponse",
+        "type": "object"
+      },
+      "ActivationListResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "activations": {
+                "items": {
+                  "$ref": "#/components/schemas/Activation"
+                },
+                "type": "array"
+              },
+              "cursor": {
+                "format": "uuid",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "activations",
+              "cursor"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "title": "ActivationListResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "vxs_ API key or OAuth access token",
+        "description": "Use `Authorization: Bearer <token>`.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Customer-facing REST API for account management, one-time SMS activations, and SMS rentals.",
+    "title": "Voxisim API",
+    "version": "1.0.19"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/v1/account/login-link": {
+      "post": {
+        "callbacks": {},
+        "description": "Mints a single-use URL that signs a browser into the account's dashboard. Hand it to the account owner — it expires in 10 minutes and cannot be reused.",
+        "operationId": "createLoginLink",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginLinkResponse"
+                }
+              }
+            },
+            "description": "Login link created"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a dashboard login link",
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/v1/balance": {
+      "get": {
+        "callbacks": {},
+        "operationId": "getBalance",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceResponse"
+                }
+              }
+            },
+            "description": "Current account balance"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get account balance",
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/v1/balance/topup": {
+      "post": {
+        "callbacks": {},
+        "description": "Buys USD balance with an x402 (EIP-3009) USDC authorization. Send no `X-PAYMENT` header to receive the 402 challenge, sign one of its `accepts` entries, then repeat the request with the header. Authentication is optional: an unrecognised payer wallet mints an account and its API key is returned once as `receipt_token`.",
+        "operationId": "topupBalance",
+        "parameters": [
+          {
+            "description": "Base64 x402 payment authorization",
+            "in": "header",
+            "name": "X-PAYMENT",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopupRequest"
+              }
+            }
+          },
+          "description": "Amount to buy",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopupResponse"
+                }
+              }
+            },
+            "description": "Balance credited"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid amount or payment"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication or x402 payment required"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredResponse"
+                }
+              }
+            },
+            "description": "Payment required"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Payment service failed"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Top up the account balance with x402",
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/v1/signup": {
+      "post": {
+        "callbacks": {},
+        "description": "Creates an account and returns its bearer API key exactly once.",
+        "operationId": "signup",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          },
+          "description": "Optional account label",
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            },
+            "description": "Account created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid signup request"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "summary": "Create an API account",
+        "tags": [
+          "Core"
+        ]
+      }
+    },
+    "/v1/sms/activation/countries": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listActivationCountries",
+        "parameters": [
+          {
+            "description": "Service identifier",
+            "in": "query",
+            "name": "service_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationCountriesResponse"
+                }
+              }
+            },
+            "description": "Available countries"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid service or request"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List countries for a one-time SMS service",
+        "tags": [
+          "SMS Activation"
+        ]
+      }
+    },
+    "/v1/sms/activation/numbers": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listActivations",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "tab",
+            "required": false,
+            "schema": {
+              "enum": [
+                "active",
+                "archived"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pagination cursor",
+            "in": "query",
+            "name": "last_id",
+            "required": false,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationListResponse"
+                }
+              }
+            },
+            "description": "Account activations"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List the account's one-time SMS numbers",
+        "tags": [
+          "SMS Activation"
+        ]
+      },
+      "post": {
+        "callbacks": {},
+        "description": "Pays from an authenticated account balance or with an x402 authorization.",
+        "operationId": "buyActivationNumber",
+        "parameters": [
+          {
+            "description": "Base64 x402 payment authorization",
+            "in": "header",
+            "name": "X-PAYMENT",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivationPurchaseRequest"
+              }
+            }
+          },
+          "description": "Service and country",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationPurchaseResponse"
+                }
+              }
+            },
+            "description": "Number purchased"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or payment"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication or x402 payment required"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredResponse"
+                }
+              }
+            },
+            "description": "Payment required"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Number unavailable or request conflict"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider or payment service failed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Buy a one-time SMS number",
+        "tags": [
+          "SMS Activation"
+        ]
+      }
+    },
+    "/v1/sms/activation/numbers/{id}": {
+      "get": {
+        "callbacks": {},
+        "operationId": "getActivation",
+        "parameters": [
+          {
+            "description": "Activation UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationStatusResponse"
+                }
+              }
+            },
+            "description": "Activation status"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Activation not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider failed"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get a one-time SMS number's status and codes",
+        "tags": [
+          "SMS Activation"
+        ]
+      }
+    },
+    "/v1/sms/activation/services": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listActivationServices",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivationServicesResponse"
+                }
+              }
+            },
+            "description": "Available services"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List one-time SMS services",
+        "tags": [
+          "SMS Activation"
+        ]
+      }
+    },
+    "/v1/sms/rental/countries": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listRentalCountries",
+        "parameters": [
+          {
+            "description": "Service identifier",
+            "in": "query",
+            "name": "service_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalCountriesResponse"
+                }
+              }
+            },
+            "description": "Available countries"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid service or request"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List countries for a rental service",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/intervals": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listRentalIntervals",
+        "parameters": [
+          {
+            "description": "Service identifier",
+            "in": "query",
+            "name": "service_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Provider country identifier",
+            "in": "query",
+            "name": "country_id",
+            "required": true,
+            "schema": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalIntervalsResponse"
+                }
+              }
+            },
+            "description": "Available rental intervals"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid service, country, or request"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List rental durations and prices",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/numbers": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listRentals",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "tab",
+            "required": false,
+            "schema": {
+              "enum": [
+                "active",
+                "archived"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pagination cursor",
+            "in": "query",
+            "name": "last_id",
+            "required": false,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalListResponse"
+                }
+              }
+            },
+            "description": "Account rentals"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List the account's rented SMS numbers",
+        "tags": [
+          "SMS Rental"
+        ]
+      },
+      "post": {
+        "callbacks": {},
+        "description": "Pays from an authenticated account balance or with an x402 authorization.",
+        "operationId": "buyRentalNumber",
+        "parameters": [
+          {
+            "description": "Base64 x402 payment authorization",
+            "in": "header",
+            "name": "X-PAYMENT",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPurchaseRequest"
+              }
+            }
+          },
+          "description": "Service, country, and duration",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalPurchaseResponse"
+                }
+              }
+            },
+            "description": "Number rented",
+            "headers": {
+              "X-PAYMENT-RESPONSE": {
+                "description": "Base64 JSON receipt for an x402 settlement",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or payment"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication or x402 payment required"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredResponse"
+                }
+              }
+            },
+            "description": "Payment required"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Number unavailable or request conflict"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider or payment service failed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Rent an SMS number",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/numbers/{id}/cancel": {
+      "post": {
+        "callbacks": {},
+        "operationId": "cancelRental",
+        "parameters": [
+          {
+            "description": "Rental UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalCancelResponse"
+                }
+              }
+            },
+            "description": "Rental cancelled"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental cannot be cancelled yet"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider failed"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Cancel a rental",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/numbers/{id}/codes": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listRentalCodes",
+        "parameters": [
+          {
+            "description": "Rental UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Pagination cursor",
+            "in": "query",
+            "name": "last_id",
+            "required": false,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "maximum": 5000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalCodesResponse"
+                }
+              }
+            },
+            "description": "Received SMS messages"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List SMS received by a rental",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/numbers/{id}/extend": {
+      "post": {
+        "callbacks": {},
+        "operationId": "extendRental",
+        "parameters": [
+          {
+            "description": "Rental UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalExtendRequest"
+              }
+            }
+          },
+          "description": "Extension duration",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalExtendResponse"
+                }
+              }
+            },
+            "description": "Rental extended"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid duration"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient balance"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental cannot be extended"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider failed"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Extend a rental",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/numbers/{id}/extend-options": {
+      "get": {
+        "callbacks": {},
+        "description": "The durations this rental can currently be extended by, with the price each would cost.",
+        "operationId": "listRentalExtendOptions",
+        "parameters": [
+          {
+            "description": "Rental UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalExtendOptionsResponse"
+                }
+              }
+            },
+            "description": "Available extension durations"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rental not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider failed"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List extension durations and prices",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/sms/rental/services": {
+      "get": {
+        "callbacks": {},
+        "operationId": "listRentalServices",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalServicesResponse"
+                }
+              }
+            },
+            "description": "Available rental services"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List rentable SMS services",
+        "tags": [
+          "SMS Rental"
+        ]
+      }
+    },
+    "/v1/vouchers/claim": {
+      "post": {
+        "callbacks": {},
+        "operationId": "claimVoucher",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoucherClaimRequest"
+              }
+            }
+          },
+          "description": "Voucher code",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VoucherClaimResponse"
+                }
+              }
+            },
+            "description": "Voucher claimed"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Voucher cannot be claimed"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Claim a voucher",
+        "tags": [
+          "Core"
+        ]
+      }
+    }
+  },
+  "security": [],
+  "servers": [
+    {
+      "description": "Production",
+      "url": "https://api.voxisim.com",
+      "variables": {}
+    }
+  ],
+  "tags": [
+    {
+      "description": "Account signup, balance and voucher redemption — shared by every product.",
+      "name": "Core"
+    },
+    {
+      "description": "One-time numbers: a number that receives a single verification code and expires in ~20 minutes.",
+      "name": "SMS Activation"
+    },
+    {
+      "description": "Rented numbers: a number rented for a day or more that receives many SMS over time.",
+      "name": "SMS Rental"
+    }
+  ]
+}
