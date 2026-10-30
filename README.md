@@ -52,11 +52,3 @@ npx @openapitools/openapi-generator-cli generate \
 ```
 
 You can also import `openapi.json` straight into Postman, Insomnia or Bruno.
-
-## Versioning
-
-Each tag in this repository (`v1.0.12`, …) is the Voxisim release that shipped that version of the API, and `info.version` holds the same number. A new commit lands here only when the API itself changes. To pin a client to one version of the contract, use a tag, not `main`.
-
-## Contributing
-
-This repository is generated from the Voxisim codebase on every release. Any edit made directly to `openapi.json` will be overwritten. To report a mistake in the spec, or behavior that differs from it, please [open an issue](https://github.com/voxisim/voxisim-openapi/issues).
