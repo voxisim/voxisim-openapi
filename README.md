@@ -2,13 +2,13 @@
 
 The OpenAPI 3.0 description of the [Voxisim](https://voxisim.com) REST API. Use it to buy one-time SMS verification numbers and to rent numbers for longer-term SMS. You can pay from an account balance, or per request in USDC over [x402](https://www.x402.org).
 
-|                |                                                                                            |
-| -------------- | ------------------------------------------------------------------------------------------ |
-| Spec           | [`openapi.json`](openapi.json), also served live at <https://api.voxisim.com/openapi.json> |
-| Base URL       | `https://api.voxisim.com`                                                                  |
-| API reference  | <https://voxisim.com/docs/api> ([Markdown](https://voxisim.com/docs/api.md))               |
-| Product guides | <https://voxisim.com/docs>                                                                 |
-| MCP server     | <https://voxisim.com/docs/mcp.md>                                                          |
+|                |                                                                                                                       |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Spec           | [`openapi.json`](openapi.json), also served live at <https://api.voxisim.com/openapi.json>                            |
+| Base URL       | `https://api.voxisim.com`                                                                                             |
+| API reference  | <https://voxisim.com/docs/api> ([Markdown](https://voxisim.com/docs/api.md))                                          |
+| Product guides | <https://voxisim.com/docs>                                                                                            |
+| MCP server     | [voxisim/voxisim-mcp](https://github.com/voxisim/voxisim-mcp) ([Markdown reference](https://voxisim.com/docs/mcp.md)) |
 
 ## Authentication
 
