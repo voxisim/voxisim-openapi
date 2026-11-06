@@ -389,6 +389,16 @@
               "number_h": {
                 "pattern": "^\\+?[0-9]+$",
                 "type": "string"
+              },
+              "verification_type": {
+                "default": "sms",
+                "description": "How the code arrives: sms, call (flash call: the caller's number is the code) or voice",
+                "enum": [
+                  "sms",
+                  "call",
+                  "voice"
+                ],
+                "type": "string"
               }
             },
             "required": [
@@ -756,12 +766,27 @@
             "format": "date-time",
             "type": "string"
           },
+          "phone_from": {
+            "description": "Sender; for a flash call the caller's number, whose last digits are the code",
+            "type": "string"
+          },
           "text": {
+            "type": "string"
+          },
+          "type": {
+            "description": "How this code arrived",
+            "enum": [
+              "sms",
+              "call",
+              "voice"
+            ],
             "type": "string"
           }
         },
         "required": [
           "id",
+          "type",
+          "phone_from",
           "code",
           "text",
           "inserted_at"
@@ -1023,6 +1048,16 @@
           },
           "status": {
             "type": "string"
+          },
+          "verification_type": {
+            "default": "sms",
+            "description": "How the code arrives: sms, call (flash call: the caller's number is the code) or voice",
+            "enum": [
+              "sms",
+              "call",
+              "voice"
+            ],
+            "type": "string"
           }
         },
         "required": [
@@ -1030,6 +1065,7 @@
           "number",
           "number_h",
           "inserted_at",
+          "verification_type",
           "service_id",
           "service",
           "country",
@@ -1230,7 +1266,8 @@
         "additionalProperties": false,
         "example": {
           "country_id": 187,
-          "service_id": "tg"
+          "service_id": "tg",
+          "verification_type": "sms"
         },
         "properties": {
           "country_id": {
@@ -1239,6 +1276,16 @@
           },
           "service_id": {
             "minLength": 1,
+            "type": "string"
+          },
+          "verification_type": {
+            "default": "sms",
+            "description": "How the code arrives: sms, call (flash call: the caller's number is the code) or voice",
+            "enum": [
+              "sms",
+              "call",
+              "voice"
+            ],
             "type": "string"
           }
         },
@@ -1452,7 +1499,7 @@
   "info": {
     "description": "Customer-facing REST API for account management, one-time SMS activations, and SMS rentals.",
     "title": "Voxisim API",
-    "version": "1.0.19"
+    "version": "1.0.23"
   },
   "openapi": "3.0.3",
   "paths": {
@@ -1763,6 +1810,22 @@
             "name": "service_id",
             "required": true,
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "How the code arrives: sms (default), call (flash call) or voice. Each has its own countries and prices.",
+            "in": "query",
+            "name": "verification_type",
+            "required": false,
+            "schema": {
+              "default": "sms",
+              "description": "How the code arrives: sms, call (flash call: the caller's number is the code) or voice",
+              "enum": [
+                "sms",
+                "call",
+                "voice"
+              ],
               "type": "string"
             }
           }
